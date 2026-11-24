@@ -1,0 +1,7 @@
+api:
+  url: https://api.open-meteo.com/v1/forecast
+openmeteo:
+  params: 
+    latitude: 10.0
+    longetude: 10.1
+    hourly: temperature_2m

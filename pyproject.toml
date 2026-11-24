@@ -1,0 +1,32 @@
+[project]
+name = "weather_lakehouse"
+version = "0.0.1"
+authors = [{ name = "gibamedeirosgc@gmail.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "datacontract-cli>=1.0.12",
+    "numpy>=1.26.4",
+    "openmeteo-requests>=1.7.5",
+    "pandas>=2.3.3",
+    "requests-cache>=1.3.3",
+    "retry-requests>=2.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+    "databricks-dlt",
+    "databricks-connect>=15.4,<15.5",
+    "ipykernel",
+]
+
+[project.scripts]
+main = "weather_lakehouse.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 120

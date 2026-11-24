@@ -1,0 +1,74 @@
+apiVersion: v3.1.0
+kind: DataContract
+id: my-data-contract-id
+name: weather_data_bronze
+version: 1.0.0
+status: draft
+description:
+    value: default
+
+servers:
+  - server: databricks
+    type: databricks
+    environment: dev
+    catalog: workspace
+    schema: default
+    customProperties:
+      - property: open_meteo_url
+        value: "https://api.open-meteo.com/v1/forecast"
+      - property: location
+        value: 
+          - city: "Recife"
+            lat: -8.0584933
+            lon: -34.8848193
+          - city: "Sao_Paulo"
+            lat: -23.5505199
+            lon: -46.6333094
+          - city: "Rio_de_Janeiro"
+            lat: -22.9068467
+            lon: -43.1728965
+          - city: "Brasilia"
+            lat: -15.7801
+            lon: -47.9292
+
+schema:
+  - name: weather_data_bronze
+    description: Tabela RAW para os dados temporais de clima.
+    type: table
+
+    properties:
+      - name: city
+        physicalType: string
+        description: Nome da cidade referente à medição.
+        required: true
+        example: "Recife"
+
+      - name: timestamp
+        physicalType: timestamp
+        description: Data e hora da coleta da medição.
+        required: true
+        example: "2026-09-14T12:00:00Z"
+
+      - name: temperature
+        physicalType: decimal
+        precision: 5
+        scale: 2
+        description: Temperatura registrada em graus Celsius.
+        required: false
+        example: 28.50
+
+      - name: precipitation
+        physicalType: decimal
+        precision: 5
+        scale: 2
+        description: Volume de precipitação pluviométrica em mm.
+        required: false
+        example: 0.00
+
+      - name: wind
+        physicalType: decimal
+        precision: 5
+        scale: 2
+        description: Velocidade do vento registrada em km/h.
+        required: false
+        example: 15.30

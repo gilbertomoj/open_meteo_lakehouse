@@ -1,0 +1,16 @@
+resources:
+  jobs:
+    weather_one_time_setup_job:
+      name: "weather api - one-time setup"
+      max_concurrent_runs: 1
+      tasks:
+        - task_key: run_one_time_setup
+          spark_python_task:
+            python_file: ../src/weather_lakehouse/setup_bronze.py
+          environment_key: default
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "4"
+            dependencies:
+              - ../dist/*.whl
