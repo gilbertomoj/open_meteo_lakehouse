@@ -9,4 +9,6 @@ scratch/**
 **/explorations/**
 **/!explorations/README.md
 .env
-
+.vscode
+.cache.sqlite
+orders.sql
